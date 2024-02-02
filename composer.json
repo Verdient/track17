@@ -1,0 +1,30 @@
+{
+    "name": "verdient/track17",
+    "description": "17Track",
+    "type": "library",
+    "keywords": [
+        "17Track"
+    ],
+    "homepage": "https://github.com/Verdient/17track",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Verdient.",
+            "email": "fagui.zhu@foxmail.com",
+            "homepage": "https://github.com/Verdient"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/Verdient/17track/issues",
+        "source": "https://github.com/Verdient/17track"
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "verdient/http-api": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Verdient\\17Track\\": "src"
+        }
+    }
+}
