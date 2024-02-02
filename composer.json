@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Verdient\\17Track\\": "src"
+            "Verdient\\Track17\\": "src"
         }
     }
 }
