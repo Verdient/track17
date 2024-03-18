@@ -20,7 +20,9 @@ class Response extends \Verdient\HttpAPI\AbstractResponse
     protected function normailze(HttpResponse $response): Result
     {
         $result = new Result;
+
         $data = $response->getBody();
+
         if ($response->getStatusCode() === 200) {
             if (isset($data['code']) && $data['code'] === 0) {
                 $result->isOK = true;
@@ -28,8 +30,21 @@ class Response extends \Verdient\HttpAPI\AbstractResponse
                 return $result;
             }
         }
-        $result->errorCode = implode(', ', array_column($data['errors'], 'code'));
-        $result->errorMessage = implode(', ', array_column($data['errors'], 'message'));
+
+        if (!empty($data['Message'])) {
+            $result->errorMessage = $data['Message'];
+        } else if (empty($data['errors'])) {
+            $result->errorMessage = implode(', ', array_column($data['errors'], 'message'));
+        } else {
+            $result->errorMessage = is_scalar($data) ? (string) $data : json_encode($data);
+        }
+
+        if (!empty($data['errors'])) {
+            $result->errorCode = implode(', ', array_column($data['errors'], 'code'));
+        } else {
+            $result->errorCode = $response->getStatusCode();
+        }
+
         return $result;
     }
 }
