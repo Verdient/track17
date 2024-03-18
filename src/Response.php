@@ -20,8 +20,8 @@ class Response extends \Verdient\HttpAPI\AbstractResponse
     protected function normailze(HttpResponse $response): Result
     {
         $result = new Result;
+        $data = $response->getBody();
         if ($response->getStatusCode() === 200) {
-            $data = $response->getBody();
             if (isset($data['code']) && $data['code'] === 0) {
                 $result->isOK = true;
                 $result->data = $data['data'];
