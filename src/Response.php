@@ -33,7 +33,7 @@ class Response extends \Verdient\HttpAPI\AbstractResponse
 
         if (!empty($data['Message'])) {
             $result->errorMessage = $data['Message'];
-        } else if (empty($data['errors'])) {
+        } else if (!empty($data['errors'])) {
             $result->errorMessage = implode(', ', array_column($data['errors'], 'message'));
         } else {
             $result->errorMessage = is_scalar($data) ? (string) $data : json_encode($data);
